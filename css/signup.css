@@ -1,0 +1,41 @@
+#loginbox{
+    height: 230px;
+    width: 300px;
+    display: table;
+    background-color: azure;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -175px;
+    margin-left: -150px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: cadetblue;
+    border-radius: 15px;
+}
+body{
+    background-image: url("../images/forest_bg.jpg");
+    background-size: cover;
+}
+#container{
+    position: relative;
+    vertical-align: middle;
+     display: table-cell;
+    vertical-align: middle;
+
+}
+#container h2{
+    text-align: center;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 8px;
+    text-shadow: black 0.01em 0.01em 0.1em; 
+}
+#container .center{
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 8px;
+}

@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>User Signup</title>
+        <link rel="stylesheet" type="text/css" href="css/signup.css">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+        
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+    </head>
+    <body>
+        <div id="loginbox">
+            <div id="container">
+                <h2>Signup</h2>
+                <input type="text" id="myName" class="lf center" placeholder="Username"/>
+                <input type="password" id="pass" class="lf center" placeholder="Password"/>
+                <input type="password" id="passagain" class="lf center" placeholder="Password again"/>
+                <button type="button" id="submit" class="btn btn-default center">Login</button>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/variables.js"></script>
+        <script type="text/javascript">
+            $("#submit").click(function(){
+                var username = $("#myName").val();
+                var password = $("#pass").val();
+                var passwordAgain = $("#passagain").val();
+                
+                if(password.length == 0 || username.length == 0 || passwordAgain.length == 0){
+                    alert("Fill the form!")
+                    resetForm();
+                    return;
+                }
+                if(password != passwordAgain){
+                    alert("Passwords don't match!");
+                    resetForm();
+                    return;
+                }
+                
+                Parse.initialize(ApplicationId, JavascriptKey);
+                var user = new Parse.User();
+                
+                user.set("username",username);
+                user.set("password",password);
+                
+                user.signUp(null,{
+                    success: function(user){
+                        alert("Hello " + username +"! You have successfuly signedup");
+                    },
+                    error: function(user,error){
+                        alert("Error: "+ error.code + " " + error.message)
+                    }
+                });
+                
+            });
+            
+            function resetForm(){
+                $("#myName").val("");
+                $("#pass").val("");
+                $("#passagain").val("");
+            }
+      </script>
+    </body>
+</html>
